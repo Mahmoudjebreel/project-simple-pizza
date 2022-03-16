@@ -19,7 +19,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
-    
+
 </head>
 <body>
     <div id="app">
@@ -35,6 +35,12 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
+                        @if (auth()->check() && auth()->user()->is_admin == 1)
+                            <a class="navbar-brand " style="margin-left: 50px" href="{{ route('pizza.index') }}">
+                                Pizza
+                            </a>
+                        @endif
+
 
                     </ul>
 
@@ -60,6 +66,23 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                   @if (auth()->user()->is_admin == 0)
+                                    <a class="dropdown-item" href="{{ route('home') }}">
+                                    {{ _('Your order history') }}
+                                    </a>
+                                    @endif
+
+                                    @if (auth()->user()->is_admin == 1)
+                                    <a class="dropdown-item" href="{{ route('order.index') }}">
+                                    {{ _('ALL User order history') }}
+                                    </a>
+                                    @endif
+
+                                    @if (auth()->user()->is_admin == 1)
+                                    <a class="dropdown-item" href="{{ route('customers') }}">
+                                    {{ _('ALL Customers') }}
+                                    </a>
+                                    @endif
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

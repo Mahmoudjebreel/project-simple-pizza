@@ -4,8 +4,13 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item active" aria-current="page">Orders</li>
+              </ol>
+           </nav>
            <div class="card">
-              <div class="card-header">Your Order</div>
+              <div class="card-header">order</div>
               <div class="card-body">
                 <table class="table table-striped">
                     <thead>
@@ -20,6 +25,9 @@
                         <th scope="col">Total($)</th>
                         <th scope="col">Message</th>
                         <th scope="col">Status</th>
+                        <th scope="col">Accept</th>
+                        <th scope="col">Reject</th>
+                        <th scope="col">Completed</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -39,7 +47,19 @@
 
                                 <td>{{ $order->body }}</td>
                                 <td>{{ $order->status }}</td>
+                                <form action="{{ route('order.status',$order->id) }}" method="POST">
+                                    @csrf
+                                    <td>
+                                        <input type="submit" name="status" value="accepted" class="btn btn-secondary btn-sm">
+                                    </td>
 
+                                  <td>
+                                      <input type="submit" name="status" value="reject" class="btn btn-danger btn-sm">
+                                  </td>
+                                  <td>
+                                      <input type="submit" name="status" value="completed" class="btn btn-success btn-sm">
+                                  </td>
+                              </form>
                             </tr>
                       @endforeach
                     </tbody>
@@ -49,18 +69,4 @@
         </div>
     </div>
 </div>
-<style>
-    a. list-group-item{
-        font-size: 18px;
-    }
-    a.list-group-item:hover{
-        background-color: red;
-        color: #fff;
-    }
-    .card-header{
-        background-color: red;
-        color: #fff;
-        font-size: 20px;
-    }
-</style>
 @endsection

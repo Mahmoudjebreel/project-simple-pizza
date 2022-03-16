@@ -2,10 +2,22 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class=" col-md-12">
+        <div class="col-md-2">
+            <div class="card">
+                <div class="card-header">{{ __('Menu') }}</div>
+                <div class="card-body">
+                    <ul class="list-group">
+                        <a href="{{ route('pizza.index') }}" class="list-group-item list-group-item-action">View</a>
+                        <a href="{{ route('pizza.create') }}" class="list-group-item list-group-item-action">Create</a>
+                        <a href="{{ route('order.index') }}" class="list-group-item list-group-item-action">User Order</a>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class=" col-md-10">
             <div class="card">
                 <div class="card-header">AlL Pizza
-                    <a href="{{ route('pizza.create') }}" class="btn btn-primary ml-auto" style="margin-left: 990px"><i class="fa fa-plus"></i> Create Pizza</a>
+                    <a href="{{ route('pizza.create') }}" class="btn btn-primary ml-auto" style="margin-left: 830px"><i class="fa fa-plus"></i> Create Pizza</a>
                 </div>
                 <div class=" card-body">
                     @if (session ('message'))
@@ -58,6 +70,15 @@
                                         <p>No Pizza To Show</p>
                           @endif
                         </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="4">
+                                    <div class="float-right">
+                                         {!! $pizzas->links() !!}
+                                    </div>
+                                </td>
+                            </tr>
+                    </tfoot>
                       </table>
                 </div>
             </div>

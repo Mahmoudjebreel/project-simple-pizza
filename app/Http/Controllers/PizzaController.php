@@ -17,7 +17,7 @@ class PizzaController extends Controller
      */
     public function index()
     {
-        $pizzas = Pizza::get();
+        $pizzas = Pizza::orderBy('id', 'desc')->paginate(2);
         return view('pizza.index',compact('pizzas'));
     }
 

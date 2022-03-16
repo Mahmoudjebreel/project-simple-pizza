@@ -18,4 +18,9 @@ class Pizza extends Model
         'category',
         'image',
     ];
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class,'pizza_id','id');
+    }
 }
